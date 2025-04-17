@@ -1,0 +1,83 @@
+---
+title: "Class 6 Practice"
+author: "Maggie Cleary"
+date: "2025-02-27"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+library(ggplot2)
+library(nycflights13)
+library(tidyverse)
+library(dplyr)
+library(socviz)
+library(gapminder)
+```
+
+```{r}
+```
+
+
+```{r}
+data(gapminder)
+
+ggplot(gapminder, mapping=aes(gdpPercap, lifeExp)) + geom_point(alpha = 0.3)+geom_smooth(color = "red")
+```
+
+```{r}
+
+library(ggplot2)
+
+ggplot(gapminder, mapping = aes(gdpPercap, lifeExp)) + geom_point(mapping=aes(color=continent), alpha = 0.5)+geom_smooth(mapping=aes(color=continent))+scale_x_log10()
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(gapminder, mapping=aes(gdpPercap, lifeExp))+geom_point(alpha=0.5, mapping = aes(color=continent))+geom_smooth(color="red",linetype="dashed", method=lm)+scale_x_log10()
+                                                                                                
+```
+
+
+```{r}
+ggplot(gapminder, mapping = aes(gdpPercap, lifeExp)) + geom_point(alpha=0.5,mapping=aes(color=continent))+geom_smooth(mapping=aes(color=continent), method=lm, se=FALSE)+scale_x_log10()
+```
+```{r}
+ggplot(gapminder,mapping=aes(gdpPercap, lifeExp))+geom_point(color="red", alpha = 0.5)+geom_smooth(color = "darkgreen", method=lm)+scale_x_log10()+facet_wrap(~continent)+theme_light()
+```
+
+```{r}
+ggplot(gapminder, mapping=aes(year,gdpPercap))+geom_smooth(aes(group=continent))+geom_line(mapping=aes(group=country), color="gray") +facet_wrap(~continent, ncol=5)
+```
+
+
+```{r}
+
+filter(flights, carrier == "B6" | carrier == "MQ" | carrier =="WN") %>% ggplot(flights, mapping=aes(carrier))+geom_bar(mapping=aes(fill=carrier))
+```
+
+```{r}
+
+
+ggplot(titanic, mapping=aes(x=fate, y=percent, fill=sex))+geom_bar(stat="identity", position = "dodge")
+
+#OR 
+
+ggplot(titanic, aes(fate,percent,fill=sex))+geom_col(position = "dodge")
+```
+
+```{r}
+ggplot(flights, mapping=aes(distance))+geom_histogram(binwidth=1000, color="orange", fill="yellow")
+```
+
+```{r}
+fl <- flights %>% group_by(carrier) %>% summarize(total=n(), delayed=sum(dep_delay>0, na.rm=TRUE), canceled=sum(is.na(dep_delay)), on_time=sum(dep_delay<=0, na.rm=TRUE)) 
+
+pivot_longer(fl, c("delayed", "on_time", "canceled"), names_to = "flight_status", values_to = "flights") %>% ggplot() + geom_bar(aes(carrier, flights, fill=flight_status), stat="identity", position = "fill")
+
+
+```
+
+``
