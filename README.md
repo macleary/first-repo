@@ -22,3 +22,5 @@ Here is a link to a Wikipedia page about [Golden Retrievers](https://en.wikipedi
 
 This is my work from [week 7](assignment.html)
 
+Here is the [link](blog.md) to my latest blog post
+
