@@ -24,3 +24,5 @@ This is my work from [week 7](assignment.html)
 
 Here is the [link](blog.md) to my latest blog post
 
+Here is the [link](Class-6-Practice-Sheet-.html) to the other class 6 assignment 
+
