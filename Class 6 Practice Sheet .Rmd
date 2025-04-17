@@ -3,8 +3,8 @@ title: "Class 6 Practice"
 author: "Maggie Cleary"
 date: "2025-02-27"
 output:
-  pdf_document: default
-  html_document: default
+  html_document:
+    theme: journal
 ---
 
 ```{r}
